@@ -7,17 +7,15 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
 import products from "../../data/products";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { FormLabel } from "@mui/material";
 
 const CustomTable = ({ data, setData }) => {
-  const [test, setTest] = React.useState([]);
+  const [select, setSelect] = React.useState([]);
 
   const handleChange = (e) => {
-    setTest(e.target.value);
+    setSelect(e.target.value);
     const name = e.target.name;
     data.map((item) => item.name === name && (item.value = e.target.value));
   };
@@ -48,8 +46,10 @@ const CustomTable = ({ data, setData }) => {
                       <MenuItem value="">
                         <em>Brak odpowiedzi</em>
                       </MenuItem>
-                      {item.options.map((option) => (
-                        <MenuItem value={option}>{option}</MenuItem>
+                      {item.options.map((option, key) => (
+                        <MenuItem key={key} value={option}>
+                          {option}
+                        </MenuItem>
                       ))}
                     </Select>
                   </FormControl>
