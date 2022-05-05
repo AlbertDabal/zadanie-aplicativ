@@ -12,12 +12,11 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
 const CustomTable = ({ data, setData }) => {
-  const [select, setSelect] = React.useState([]);
-
   const handleChange = (e) => {
-    setSelect(e.target.value);
-    const name = e.target.name;
-    data.map((item) => item.name === name && (item.value = e.target.value));
+    const { name, value } = e.target;
+    const item = data.find((item) => item.name === name);
+    item.value = value;
+    setData([...data]);
   };
 
   return (
